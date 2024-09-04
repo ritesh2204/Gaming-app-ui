@@ -1,70 +1,108 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Text, StyleSheet, View, ScrollView } from 'react-native';
+import { Colors } from '@/constants/Colors';
+import Header from '@/components/Header';
+import SportsCategoriesListItem from '@/components/SportsCategoriesListItem';
+import UserBoard from '@/components/UserBoard';
+import Banner from '@/components/Banner';
+import GameCategories from '@/components/GameCategories';
+import Inplay from '@/components/Inplay';
+import LeagueHeader from '@/components/LeagueHeader';
+import MatchCard from '@/components/MatchCard';
+import FeaturedGames from '@/components/FeaturedGames';
+import CallToAction from '@/components/CallToAction';
+import CardBanner from '@/components/CardBanner';
+import PlayGamesList from '@/components/PlayGamesList';
+import DownloadAppBanner from '@/components/DownoadAppBanner';
+import CasinoList from '@/components/CasinoList';
+import CustomButton from '@/components/CustomButton';
+import Footer from '@/components/Footer';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Header />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.spacer}>
+          <SportsCategoriesListItem />
+          <UserBoard />
+          <Banner />
+          <GameCategories />
+          <Inplay />
+          <LeagueHeader />
+          <MatchCard
+            time="Tomorrow, 04:30"
+            team1="Los Angeles Knight Riders"
+            team2="Seattle Orcas"
+            odds={[
+              { value: '1.78', color: Colors.evenblue, stake: '8' },
+              { value: '1.78', color: Colors.evenpink, stake: '8' },
+              { value: '', color: Colors.oddblue, stake: '' },
+              { value: '', color: Colors.oddpink, stake: '' },
+              { value: '1.78', color: Colors.evenblue, stake: '8' },
+              { value: '1.78', color: Colors.evenpink, stake: '8' }
+            ]}
+          />
+          <LeagueHeader />
+          <MatchCard
+            time="Tomorrow, 04:30"
+            team1="Los Angeles Knight Riders"
+            team2="Seattle Orcas"
+            odds={[
+              { value: '1.78', color: Colors.evenblue, stake: '8' },
+              { value: '1.78', color: Colors.evenpink, stake: '8' },
+              { value: '', color: Colors.oddblue, stake: '' },
+              { value: '', color: Colors.oddpink, stake: '' },
+              { value: '1.78', color: Colors.evenblue, stake: '8' },
+              { value: '1.78', color: Colors.evenpink, stake: '8' }
+            ]}
+          />
+          <LeagueHeader />
+          <MatchCard
+            time="Tomorrow, 04:30"
+            team1="Los Angeles Knight Riders"
+            team2="Seattle Orcas"
+            odds={[
+              { value: '1.78', color: Colors.evenblue, stake: '8' },
+              { value: '1.78', color: Colors.evenpink, stake: '8' },
+              { value: '', color: Colors.oddblue, stake: '' },
+              { value: '', color: Colors.oddpink, stake: '' },
+              { value: '1.78', color: Colors.evenblue, stake: '8' },
+              { value: '1.78', color: Colors.evenpink, stake: '8' }
+            ]}
+          />
+          <FeaturedGames />
+          <CallToAction />
+          <CardBanner />
+          <PlayGamesList />
+          <DownloadAppBanner />
+          <CasinoList />
+          <View style={styles.buttonContainer}>
+            <CustomButton iconName="globe" text="English" onPress={() => console.log('Language Pressed')} />
+            <CustomButton iconName="moon" iconType="FontAwesome5" text="Dark" onPress={() => console.log('Theme Pressed')} />
+          </View>
+          <View style={{ marginTop: 25 }}>
+            <Footer />
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: Colors.primary
+  },
+  spacer: {
+    marginHorizontal: 20
+  },
+  scrollContainer:{
+    paddingBottom: 50
+  },
+  buttonContainer: {
+    marginTop: 30,
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+    justifyContent: 'space-between',
+  }
 });
